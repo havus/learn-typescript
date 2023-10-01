@@ -12,4 +12,4 @@ $ npx tsc --watch
 ### References
 - https://babeljs.io/setup#installation
 - https://jestjs.io/docs/getting-started#using-typescript
-
+- https://www.typescriptlang.org/docs/handbook/2/generics.html
