@@ -13,3 +13,4 @@ $ npx tsc --watch
 - https://babeljs.io/setup#installation
 - https://jestjs.io/docs/getting-started#using-typescript
 - https://www.typescriptlang.org/docs/handbook/2/generics.html
+- https://www.digitalocean.com/community/tutorials/how-to-use-generics-in-typescript

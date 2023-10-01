@@ -389,4 +389,45 @@ describe('Data types', () => {
     expect(sample.first.name).toBe('john');
     expect(sample.second).toBe('dummy');
   });
+
+  it('generics func arg 4', () => {
+    type MyObject = {
+      [key: string]: any;
+    };
+    
+    // function pickObjectKeys<T, K extends keyof T>(obj: T, keys: K[]) {
+    // function pickObjectKeys<T extends Object, K extends keyof T>(obj: T, keys: K[]): any {
+    // function pickObjectKeys<T extends MyObject, K extends keyof T>(obj: T, keys: string[]): MyObject {
+    function pickObjectKeys<T extends MyObject, K extends keyof T>(obj: T, keys: K[]): MyObject {
+      // let result: MyObject = {};
+      let result = {} as Pick<T, K>;
+
+      for (const key of keys) {
+        if (key in obj) {
+          result[key] = obj[key];
+        }
+      }
+
+      return result;
+    }
+
+    type Language = {
+      name: string;
+      age: number;
+      extensions: string[];
+    }
+
+    const language: Language = {
+      name: "TypeScript",
+      age: 8,
+      extensions: ['ts', 'tsx']
+    }
+
+    // const ageAndExtensions = pickObjectKeys<Language, 'name' | 'age' | 'extensions'>(language, ['age', 'extensions']);
+    const ageAndExtensions = pickObjectKeys<Language, keyof Language>(language, ['age', 'extensions']);
+
+    expect(ageAndExtensions.name).toBeUndefined();
+    expect(ageAndExtensions.age).toBe(language.age);
+    expect(ageAndExtensions.extensions).toBe(language.extensions);
+  });
 });
